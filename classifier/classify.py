@@ -9,7 +9,7 @@ import io
 classes = ["Blood", "BrainMRI", "ChestCT", "ChestXRay", "KneeMRI", "KneeXRay", "Ocular"]
 
 model = UniversalClassifier().eval()
-load_checkpoint(torch.load("./classifier/my_checkpoint.pth.tar"), model)
+load_checkpoint(torch.load("./classifier/my_checkpoint.pth.tar", map_location ='cpu'), model)
 
 def get_dictionary(pred):
     return dict(zip(classes, np.trunc(pred[0]).tolist()))
