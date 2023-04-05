@@ -2,7 +2,7 @@ from torch import nn
 from math import floor
 
 class UniversalClassifier(nn.Module):
-    def __init__(self, size_image=64, in_channels=3, out_channels=32, num_conv_layers=3, num_classes=7): # Defining features configuration
+    def __init__(self, size_image=64, in_channels=3, out_channels=32, num_conv_layers=3, num_classes=8): # Defining features configuration
         super().__init__()
 
         _dim = size_image
