@@ -15,7 +15,7 @@ def index_post():
     img_bytes = file.read()
     prediction_dic = main(img_bytes)
 
-    return render_template("home.html", json=json.dumps(prediction_dic))
+    return render_template("home.html", json=json.dumps(str(prediction_dic)))
 
 
 if __name__ == '__main__':
