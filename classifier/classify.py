@@ -12,7 +12,6 @@ model = UniversalClassifier().eval()
 load_checkpoint(torch.load("./classifier/proto_3.pth.tar", map_location ='cpu'), model)
 
 def get_dictionary(pred):
-    print(pred.round(decimals=4).tolist())
     return dict(zip(classes, pred.round(decimals=2)))
 
 def main(img_bytes):
