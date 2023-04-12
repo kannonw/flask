@@ -13,7 +13,7 @@ load_checkpoint(torch.load("./classifier/proto_3.pth.tar", map_location ='cpu'),
 
 def get_dictionary(pred):
     print(pred.round(decimals=4).tolist())
-    return dict(zip(classes, pred.round(decimals=4)))
+    return dict(zip(classes, pred.round(decimals=2)))
 
 def main(img_bytes):
     img_np = np.array(Image.open(io.BytesIO(img_bytes)).convert("RGB")) # Convert image bytes into a matrix
