@@ -1,23 +1,23 @@
-from flask import Flask, json, request, render_template
-from classifier.classify import main
-import os
+from flask import Flask, render_template, request
+from classifier.MultiClassifier import PredictDisease
+
 
 app = Flask(__name__)
 
 
 @app.route('/', methods=["GET"])
 def index():
-    return render_template("home.html")
+    return render_template("home.html", json={})
+
 
 @app.route('/', methods=["POST"])
 def index_post():
-    file = request.files['image']
+    file = request.files['file']
     img_bytes = file.read()
-    prediction_dic = main(img_bytes)
+    label_idx, prediction_dic = PredictDisease(img_bytes)
 
-    return render_template("home.html", json=json.dumps(str(prediction_dic)))
+    return render_template("home.html", class_name=list(prediction_dic)[label_idx], json=prediction_dic)
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=os.getenv("PORT", default=5000))
-    # 
+    app.run()
